@@ -1,7 +1,7 @@
 /* Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
    SPDX-License-Identifier: MIT-0 */
 
-output "tgw" {
+output "tgw_test_gh_action_documentation" {
   description = "tgw id for attachments"
   value       = aws_ec2_transit_gateway.org_tgw.id
 }
