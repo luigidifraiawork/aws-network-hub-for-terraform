@@ -2,8 +2,10 @@ name: Generate terraform docs
 on:
   pull_request:
     paths:
-    - 'modules/**/*.tf'
     - '*.tf'
+    - 'modules/**/*.tf'
+    - 'example-spoke-vpc/*.tf'
+    - 'example-spoke-vpc/modules/**/*.tf'
 
 jobs:
   docs:
