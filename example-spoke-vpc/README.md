@@ -171,7 +171,6 @@ Note that this command will delete all the resources previously created by Terra
 ## Terraform Docs
 
 <!-- BEGIN_TF_DOCS -->
-
 #### Requirements
 
 | Name | Version |
@@ -183,8 +182,8 @@ Note that this command will delete all the resources previously created by Terra
 
 | Name | Version |
 |------|---------|
-| aws | 3.71.0 |
-| aws.network\_hub | 3.71.0 |
+| aws | ~> 3.0 |
+| aws.network_hub | ~> 3.0 |
 
 #### Modules
 
@@ -206,15 +205,20 @@ Note that this command will delete all the resources previously created by Terra
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| aws\_region | AWS region being deployed to | `string` | n/a | yes |
-| centralised\_vpc\_endpoints | Which centralised VPC endpoints to consume | `list(string)` | n/a | yes |
-| env\_config | Map of objects for per environment configuration | <pre>map(object({<br>    network_hub_account_number = string<br>    tgw_route_tables           = list(string)<br>    root_domain                = string<br>  }))</pre> | n/a | yes |
+| aws_region | AWS region being deployed to | `string` | n/a | yes |
+| az_count | Number of availability zones | `number` | `2` | no |
+| centralised_vpc_endpoints | Which centralised VPC endpoints to consume | `list(string)` | n/a | yes |
+| env_config | Map of objects for per environment configuration | <pre>map(object({<br>    network_hub_account_number = string<br>    tgw_route_tables           = list(string)<br>    root_domain                = string<br>  }))</pre> | n/a | yes |
 | environment | Deployment environment passed as argument or environment variable | `string` | n/a | yes |
-| vpc\_endpoints | Which local VPC endpoints to deploy | `list(string)` | n/a | yes |
+| tags | Default tags to apply to all resources | `map(string)` | n/a | yes |
+| vpc_endpoints | Which local VPC endpoints to deploy | `list(string)` | n/a | yes |
+| vpc_name | Name of the VPC | `string` | `"spoke"` | no |
 
 #### Outputs
 
-No outputs.
+| Name | Description |
+|------|-------------|
+| vpc_id | vpc id used for other modules |
 <!-- END_TF_DOCS -->
 
 <!-- BEGIN_TF_Network_DOCS -->

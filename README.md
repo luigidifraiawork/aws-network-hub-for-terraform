@@ -214,58 +214,59 @@ Note that this command will delete all the resources previously created by Terra
 ### Terraform Deployment
 
 <!-- BEGIN_TF_DOCS -->
-
 #### Requirements
 
-| Name      | Version  |
-| --------- | -------- |
-| terraform | ~> 1.1   |
-| aws       | >= 4.4.0 |
+| Name | Version |
+|------|---------|
+| terraform | ~> 1.1 |
+| aws | >= 4.4.0 |
 
 #### Providers
 
-| Name | Version  |
-| ---- | -------- |
-| aws  | >= 4.4.0 |
+| Name | Version |
+|------|---------|
+| aws | 4.5.0 |
 
 #### Modules
 
-| Name                 | Source                         | Version |
-| -------------------- | ------------------------------ | ------- |
-| dns                  | ./modules/dns                  | n/a     |
-| ipam                 | ./modules/ipam                 | n/a     |
-| network_firewall_vpc | ./modules/network_firewall_vpc | n/a     |
-| tgw                  | ./modules/tgw                  | n/a     |
-| vpc_endpoints        | ./modules/vpc_endpoints        | n/a     |
+| Name | Source | Version |
+|------|--------|---------|
+| dns | ./modules/dns | n/a |
+| ipam | ./modules/ipam | n/a |
+| network_firewall_vpc | ./modules/network_firewall_vpc | n/a |
+| tgw | ./modules/tgw | n/a |
+| vpc_endpoints | ./modules/vpc_endpoints | n/a |
 
 #### Resources
 
-| Name                                                                                                                                                   | Type        |
-| ------------------------------------------------------------------------------------------------------------------------------------------------------ | ----------- |
-| [aws_iam_policy.central_network](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_policy)                               | resource    |
-| [aws_iam_policy_attachment.central_network](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_policy_attachment)         | resource    |
-| [aws_iam_role.central_network](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_role)                                   | resource    |
-| [aws_iam_role.flow_logs](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_role)                                         | resource    |
-| [aws_iam_role_policy.flow_logs](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_role_policy)                           | resource    |
-| [aws_kms_key.log_key](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/kms_key)                                             | resource    |
-| [aws_availability_zones.available](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/availability_zones)                  | data source |
-| [aws_caller_identity.current](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/caller_identity)                          | data source |
+| Name | Type |
+|------|------|
+| [aws_iam_policy.central_network](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_policy) | resource |
+| [aws_iam_policy_attachment.central_network](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_policy_attachment) | resource |
+| [aws_iam_role.central_network](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_role) | resource |
+| [aws_iam_role.flow_logs](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_role) | resource |
+| [aws_iam_role_policy.flow_logs](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_role_policy) | resource |
+| [aws_kms_key.log_key](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/kms_key) | resource |
+| [aws_availability_zones.available](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/availability_zones) | data source |
+| [aws_caller_identity.current](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/caller_identity) | data source |
 | [aws_iam_policy_document.policy_kms_logs_document](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/iam_policy_document) | data source |
-| [aws_organizations_organization.main](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/organizations_organization)       | data source |
+| [aws_organizations_organization.main](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/organizations_organization) | data source |
 
 #### Inputs
 
-| Name          | Description                                                       | Type                                                                                                                | Default | Required |
-| ------------- | ----------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------- | ------- | :------: |
-| aws_region    | AWS region being deployed to                                      | `string`                                                                                                            | n/a     |   yes    |
-| env_config    | Map of objects for per environment configuration                  | <pre>map(object({<br> ipam_cidr = string<br> tgw_route_tables = list(string)<br> root_domain = string<br> }))</pre> | n/a     |   yes    |
-| environment   | Deployment environment passed as argument or environment variable | `string`                                                                                                            | n/a     |   yes    |
-| vpc_endpoints | Which VPC endpoints to use                                        | `list(string)`                                                                                                      | n/a     |   yes    |
+| Name | Description | Type | Default | Required |
+|------|-------------|------|---------|:--------:|
+| aws_region | AWS region being deployed to | `string` | n/a | yes |
+| env_config | Map of objects for per environment configuration | <pre>map(object({<br>    ipam_cidr        = string<br>    tgw_route_tables = list(string)<br>    root_domain      = string<br>  }))</pre> | n/a | yes |
+| environment | Deployment environment passed as argument or environment variable | `string` | n/a | yes |
+| tags | Default tags to apply to all resources | `map(string)` | n/a | yes |
+| vpc_endpoints | Which VPC endpoints to use | `list(string)` | n/a | yes |
 
 #### Outputs
 
-No outputs.
-
+| Name | Description |
+|------|-------------|
+| tgw_route_table | map of route tables used for association and propagation |
 <!-- END_TF_DOCS -->
 
 ### TGW Module
