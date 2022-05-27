@@ -15,7 +15,8 @@ jobs:
       with:
         ref: ${{ github.event.pull_request.head.ref }}
     - name: Render terraform docs inside the README.md and push changes back to PR branch
-      uses: luigidifraiawork/terraform-docs-gh-actions@no-defaults-if-config-file-used
+      uses: terraform-docs/gh-actions@v1.0.0
+      #uses: luigidifraiawork/terraform-docs-gh-actions@no-defaults-if-config-file-used
       with:
         working-dir: .,example-spoke-vpc
         config-file: .terraform-docs.yml
