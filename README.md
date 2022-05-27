@@ -264,9 +264,7 @@ Note that this command will delete all the resources previously created by Terra
 
 #### Outputs
 
-| Name | Description |
-|------|-------------|
-| tgw_route_table | map of route tables used for association and propagation |
+No outputs.
 <!-- END_TF_DOCS -->
 
 ### TGW Module
